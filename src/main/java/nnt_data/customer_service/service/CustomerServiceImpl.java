@@ -1,7 +1,7 @@
 package nnt_data.customer_service.service;
 
 import lombok.RequiredArgsConstructor;
-import nnt_data.customer_service.document.CustomerEntity;
+import nnt_data.customer_service.model.CustomerEntity;
 import nnt_data.customer_service.exception.CustomerNotFoundException;
 import nnt_data.customer_service.mapper.CustomerMapper;
 import nnt_data.customer_service.model.Customer;

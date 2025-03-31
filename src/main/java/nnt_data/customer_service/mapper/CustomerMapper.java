@@ -1,6 +1,6 @@
 package nnt_data.customer_service.mapper;
 
-import nnt_data.customer_service.document.CustomerEntity;
+import nnt_data.customer_service.model.CustomerEntity;
 import nnt_data.customer_service.model.Customer;
 import reactor.core.publisher.Mono;
 

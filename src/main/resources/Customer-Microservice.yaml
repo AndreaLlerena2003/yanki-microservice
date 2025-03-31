@@ -41,7 +41,6 @@ paths:
                   value:
                     - id: "cust-123456"
                       name: "Juan"
-                      lastname: "Pérez"
                       email: "juan.perez@ejemplo.com"
                       phone: "+51987654321"
                       address: "Av. Arequipa 123, Lima"
@@ -49,7 +48,6 @@ paths:
                       dni: "12345678"
                     - id: "cust-789012"
                       name: "Empresa"
-                      lastname: "Ejemplo"
                       email: "contacto@empresa.com"
                       phone: "987654321"
                       address: "Av. La Marina 456, Lima"
@@ -76,7 +74,6 @@ paths:
                 summary: Ejemplo de cliente personal
                 value:
                   name: "María"
-                  lastname: "González"
                   email: "maria.gonzalez@correo.com"
                   phone: "+51912345678"
                   address: "Jr. Cusco 789, Lima"
@@ -86,7 +83,6 @@ paths:
                 summary: Ejemplo de cliente empresarial
                 value:
                   name: "Corporación"
-                  lastname: "Andina"
                   email: "contacto@corpandina.com"
                   phone: "912345678"
                   address: "Av. Javier Prado 1234, Lima"
@@ -106,7 +102,6 @@ paths:
                   value:
                     id: "cust-345678"
                     name: "María"
-                    lastname: "González"
                     email: "maria.gonzalez@correo.com"
                     phone: "+51912345678"
                     address: "Jr. Cusco 789, Lima"
@@ -149,7 +144,6 @@ paths:
                   value:
                     id: "cust-123456"
                     name: "Juan"
-                    lastname: "Pérez"
                     email: "juan.perez@ejemplo.com"
                     phone: "+51987654321"
                     address: "Av. Arequipa 123, Lima"
@@ -160,7 +154,6 @@ paths:
                   value:
                     id: "cust-789012"
                     name: "Empresa"
-                    lastname: "Ejemplo"
                     email: "contacto@empresa.com"
                     phone: "987654321"
                     address: "Av. La Marina 456, Lima"
@@ -192,7 +185,6 @@ paths:
                 summary: Actualización de cliente personal
                 value:
                   name: "Juan Carlos"
-                  lastname: "Pérez"
                   email: "juancarlos.perez@ejemplo.com"
                   phone: "+51987654321"
                   address: "Av. Arequipa 456, Lima"
@@ -211,7 +203,6 @@ paths:
                   value:
                     id: "cust-123456"
                     name: "Juan Carlos"
-                    lastname: "Pérez"
                     email: "juancarlos.perez@ejemplo.com"
                     phone: "+51987654321"
                     address: "Av. Arequipa 456, Lima"
@@ -266,12 +257,6 @@ components:
           maxLength: 50
           description: Nombre(s) con primera letra mayúscula
           example: "Juan"
-        lastname:
-          type: string
-          minLength: 2
-          maxLength: 50
-          description: Apellido(s) con primera letra mayúscula
-          example: "Pérez"
         email:
           type: string
           format: email
@@ -303,7 +288,6 @@ components:
         - name
         - email
         - type
-        - lastname
         - phone
         - address
 

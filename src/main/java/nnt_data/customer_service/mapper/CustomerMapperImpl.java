@@ -1,6 +1,6 @@
 package nnt_data.customer_service.mapper;
 
-import nnt_data.customer_service.document.CustomerEntity;
+import nnt_data.customer_service.model.CustomerEntity;
 import nnt_data.customer_service.exception.CustomerMappingException;
 import nnt_data.customer_service.model.BusinessCustomer;
 import nnt_data.customer_service.model.Customer;
@@ -49,7 +49,6 @@ public class CustomerMapperImpl implements CustomerMapper{
     private void mapCommonFields(Customer customer, CustomerEntity customerEntity) {
         customerEntity.setId(customer.getId());
         customerEntity.setName(customer.getName());
-        customerEntity.setLastname(customer.getLastname());
         customerEntity.setEmail(customer.getEmail());
         customerEntity.setPhone(customer.getPhone());
         customerEntity.setAddress(customer.getAddress());
@@ -85,7 +84,6 @@ public class CustomerMapperImpl implements CustomerMapper{
     private void mapCommonCustomerFields(CustomerEntity customerEntity, Customer customer) {
         customer.setId(customerEntity.getId());
         customer.setName(customerEntity.getName());
-        customer.setLastname(customerEntity.getLastname());
         customer.setEmail(customerEntity.getEmail());
         customer.setPhone(customerEntity.getPhone());
         customer.setAddress(customerEntity.getAddress());
