@@ -152,7 +152,7 @@
 
 							<packageName>nnt_data.customer_service</packageName>
 							<apiPackage>nnt_data.customer_service.api</apiPackage>
-							<modelPackage>nnt_data.customer_service.model</modelPackage>
+							<modelPackage>nnt_data.customer_service.entity</modelPackage>
 						</configuration>
 					</execution>
 				</executions>

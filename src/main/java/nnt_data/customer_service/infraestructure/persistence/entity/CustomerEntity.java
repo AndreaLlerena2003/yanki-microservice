@@ -1,9 +1,8 @@
-package nnt_data.customer_service.model;
+package nnt_data.customer_service.infraestructure.persistence.entity;
 
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import nnt_data.customer_service.entity.Customer;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -19,9 +18,7 @@ public class CustomerEntity {
     private String phone;
     private String address;
     private Customer.TypeEnum type;
-    @Indexed(unique = true)
     private String dni;
-    @Indexed(unique = true)
     private String ruc;
 
 }

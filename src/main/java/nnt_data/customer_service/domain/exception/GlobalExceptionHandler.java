@@ -1,4 +1,4 @@
-package nnt_data.customer_service.exception;
+package nnt_data.customer_service.domain.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

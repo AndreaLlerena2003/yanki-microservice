@@ -1,5 +1,5 @@
-package nnt_data.customer_service.validation;
-import nnt_data.customer_service.model.Customer;
+package nnt_data.customer_service.domain.validation;
+import nnt_data.customer_service.entity.Customer;
 import reactor.core.publisher.Mono;
 
 public interface CustomerValidator {

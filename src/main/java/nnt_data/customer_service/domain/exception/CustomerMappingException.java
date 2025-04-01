@@ -1,4 +1,4 @@
-package nnt_data.customer_service.exception;
+package nnt_data.customer_service.domain.exception;
 
 public class CustomerMappingException extends RuntimeException {
     public CustomerMappingException(String message) {

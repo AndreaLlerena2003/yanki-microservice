@@ -1,6 +1,6 @@
-package nnt_data.customer_service.repository;
+package nnt_data.customer_service.infraestructure.persistence.repository;
 
-import nnt_data.customer_service.model.CustomerEntity;
+import nnt_data.customer_service.infraestructure.persistence.entity.CustomerEntity;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import reactor.core.publisher.Mono;
 
