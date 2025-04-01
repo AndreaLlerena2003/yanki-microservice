@@ -5,3 +5,7 @@ public class CustomerUniqueFieldException extends RuntimeException {
         super(message);
     }
 }
+/**
+ * Excepción personalizada para indicar que un campo único de un cliente ya existe.
+ * Extiende RuntimeException y proporciona un constructor para mensajes de error.
+ */

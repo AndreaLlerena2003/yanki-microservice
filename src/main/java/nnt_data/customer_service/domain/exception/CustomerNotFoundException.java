@@ -5,3 +5,7 @@ public class CustomerNotFoundException extends RuntimeException {
         super(message);
     }
 }
+/**
+ * Excepción personalizada para indicar que un cliente no fue encontrado.
+ * Extiende RuntimeException y proporciona un constructor para mensajes de error.
+ */

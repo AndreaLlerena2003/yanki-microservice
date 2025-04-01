@@ -4,7 +4,10 @@ import nnt_data.customer_service.entity.Customer;
 import nnt_data.customer_service.infraestructure.persistence.entity.CustomerEntity;
 import nnt_data.customer_service.entity.PersonalCustomer;
 import org.springframework.stereotype.Component;
-
+/**
+ * Estrategia de mapeo para clientes personales, extendiendo la estrategia base.
+ * Convierte entre `PersonalCustomer` y `CustomerEntity`.
+ */
 @Component
 public class PersonalCustomerMappingStrategy extends BaseCustomerMappingStrategy {
 

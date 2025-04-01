@@ -8,7 +8,10 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 
-
+/**
+ * Implementación del validador de clientes.
+ * Utiliza estrategias de validación para asegurar que los campos únicos de un cliente sean válidos.
+ */
 @Component
 @AllArgsConstructor
 public class CustomerValidatorImpl implements CustomerValidator{

@@ -8,7 +8,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-
+/**
+ * Controlador
+ *
+ * Funcionalidades:
+ * - Crear un nuevo cliente.
+ * - Eliminar un cliente existente por su ID.
+ * - Obtener un cliente por su ID.
+ * - Actualizar los datos de un cliente existente.
+ *
+ * Cada operación devuelve una respuesta adecuada según el resultado, utilizando
+ * operadores de Reactor para manejar errores y transformaciones de datos.
+ */
 @RestController
 @RequiredArgsConstructor
 public class CustomerController implements CustomersApi {
