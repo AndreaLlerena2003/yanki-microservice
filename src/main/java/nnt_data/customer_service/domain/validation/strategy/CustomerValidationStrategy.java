@@ -9,3 +9,7 @@ public interface CustomerValidationStrategy {
     boolean supports(Customer customer);
     Mono<Void> validateSubtype(CustomerSubtype subtype);
 }
+/**
+ * Interfaz para estrategias de validación de clientes.
+ * Define métodos para validar campos únicos y verificar el tipo de cliente.
+ */

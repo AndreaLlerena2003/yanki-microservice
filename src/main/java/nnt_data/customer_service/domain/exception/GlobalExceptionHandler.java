@@ -14,7 +14,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
+/**
+ * Manejador global de excepciones para la aplicación.
+ * Utiliza `Mono` de Reactor para manejar respuestas de manera reactiva.
+ *
+ * Funcionalidades:
+ * - Manejo de excepciones específicas como `CustomerUniqueFieldException`, `CustomerMappingException`, y `CustomerNotFoundException`.
+ * - Manejo de excepciones genéricas.
+ * - Manejo de excepciones de validación (`MethodArgumentNotValidException` y `WebExchangeBindException`).
+ * - Respuestas adecuadas con detalles de error y timestamp.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

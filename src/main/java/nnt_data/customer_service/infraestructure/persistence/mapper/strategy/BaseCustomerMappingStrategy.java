@@ -2,7 +2,9 @@ package nnt_data.customer_service.infraestructure.persistence.mapper.strategy;
 
 import nnt_data.customer_service.entity.Customer;
 import nnt_data.customer_service.infraestructure.persistence.entity.CustomerEntity;
-
+/**
+ * Estrategia base para el mapeo de campos comunes entre `Customer` y `CustomerEntity`.
+ */
 public abstract  class BaseCustomerMappingStrategy implements CustomerMappingStrategy {
     protected void mapCommonFields(Customer source, CustomerEntity target) {
         target.setId(source.getId());

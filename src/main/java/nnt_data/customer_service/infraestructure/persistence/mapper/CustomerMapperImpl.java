@@ -12,7 +12,10 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-
+/**
+ * Implementación del mapeador de clientes.
+ * Utiliza estrategias de mapeo para convertir entre `Customer` y `CustomerEntity`.
+ */
 @Component
 public class CustomerMapperImpl implements CustomerMapper {
 

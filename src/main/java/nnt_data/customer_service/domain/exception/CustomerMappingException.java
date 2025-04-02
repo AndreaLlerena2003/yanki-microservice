@@ -9,3 +9,8 @@ public class CustomerMappingException extends RuntimeException {
         super(message, cause);
     }
 }
+/**
+ * Excepción personalizada para errores de mapeo de clientes.
+ * Extiende RuntimeException y proporciona constructores para
+ * mensajes de error y causas subyacentes.
+ */

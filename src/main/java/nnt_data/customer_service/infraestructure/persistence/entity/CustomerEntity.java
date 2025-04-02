@@ -7,7 +7,10 @@ import nnt_data.customer_service.entity.CustomerSubtype;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+/**
+ * Entidad de persistencia para `Customer`, mapeada a la colección "costumer" en MongoDB.
+ * Incluye campos como id, nombre, email, teléfono, dirección, tipo, dni y ruc.
+ */
 @Data
 @Document(collection = "costumer")
 public class CustomerEntity {

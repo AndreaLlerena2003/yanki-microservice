@@ -6,7 +6,10 @@ import nnt_data.customer_service.entity.PersonalCustomer;
 import nnt_data.customer_service.infraestructure.persistence.repository.CustomerRepository;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
-
+/**
+ * Estrategia de validación para clientes personales, extendiendo la estrategia base.
+ * Valida campos únicos como el email y el DNI.
+ */
 @Component
 public class PersonalCustomerValidationStrategy extends BaseValidationStrategy implements CustomerValidationStrategy {
 
