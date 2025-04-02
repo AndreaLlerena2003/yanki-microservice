@@ -1,6 +1,6 @@
-package nnt_data.customer_service.infraestructure.persistence.mapper;
+package nnt_data.customer_service.infrastructure.persistence.mapper;
 
-import nnt_data.customer_service.infraestructure.persistence.entity.CustomerEntity;
+import nnt_data.customer_service.infrastructure.persistence.entity.CustomerEntity;
 import nnt_data.customer_service.entity.Customer;
 import reactor.core.publisher.Mono;
 /**

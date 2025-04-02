@@ -1,7 +1,7 @@
-package nnt_data.customer_service.infraestructure.persistence.mapper.strategy;
+package nnt_data.customer_service.infrastructure.persistence.mapper.strategy;
 
 import nnt_data.customer_service.entity.Customer;
-import nnt_data.customer_service.infraestructure.persistence.entity.CustomerEntity;
+import nnt_data.customer_service.infrastructure.persistence.entity.CustomerEntity;
 /**
  * Estrategia base para el mapeo de campos comunes entre `Customer` y `CustomerEntity`.
  */

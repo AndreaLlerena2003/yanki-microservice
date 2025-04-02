@@ -1,6 +1,6 @@
 package nnt_data.customer_service.application.port;
 
-import nnt_data.customer_service.infraestructure.persistence.entity.CustomerEntity;
+import nnt_data.customer_service.infrastructure.persistence.entity.CustomerEntity;
 import nnt_data.customer_service.entity.Customer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;

@@ -1,7 +1,7 @@
 package nnt_data.customer_service.domain.validation.strategy;
 
 import nnt_data.customer_service.domain.exception.CustomerUniqueFieldException;
-import nnt_data.customer_service.infraestructure.persistence.repository.CustomerRepository;
+import nnt_data.customer_service.infrastructure.persistence.repository.CustomerRepository;
 import reactor.core.publisher.Mono;
 /**
  * Estrategia base para validaciones de campos únicos en clientes.

@@ -1,9 +1,9 @@
-package nnt_data.customer_service.infraestructure.persistence.mapper;
+package nnt_data.customer_service.infrastructure.persistence.mapper;
 
-import nnt_data.customer_service.infraestructure.persistence.entity.CustomerEntity;
+import nnt_data.customer_service.infrastructure.persistence.entity.CustomerEntity;
 import nnt_data.customer_service.domain.exception.CustomerMappingException;
 import nnt_data.customer_service.entity.Customer;
-import nnt_data.customer_service.infraestructure.persistence.mapper.strategy.CustomerMappingStrategy;
+import nnt_data.customer_service.infrastructure.persistence.mapper.strategy.CustomerMappingStrategy;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 

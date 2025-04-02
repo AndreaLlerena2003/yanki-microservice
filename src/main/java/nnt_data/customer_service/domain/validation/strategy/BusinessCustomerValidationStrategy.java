@@ -3,7 +3,7 @@ package nnt_data.customer_service.domain.validation.strategy;
 import nnt_data.customer_service.entity.BusinessCustomer;
 import nnt_data.customer_service.entity.Customer;
 import nnt_data.customer_service.entity.CustomerSubtype;
-import nnt_data.customer_service.infraestructure.persistence.repository.CustomerRepository;
+import nnt_data.customer_service.infrastructure.persistence.repository.CustomerRepository;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 /**

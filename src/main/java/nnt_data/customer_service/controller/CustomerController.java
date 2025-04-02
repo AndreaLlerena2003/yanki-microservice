@@ -1,7 +1,7 @@
 package nnt_data.customer_service.controller;
 import lombok.RequiredArgsConstructor;
 import nnt_data.customer_service.api.CustomersApi;
-import nnt_data.customer_service.infraestructure.persistence.mapper.CustomerMapper;
+import nnt_data.customer_service.infrastructure.persistence.mapper.CustomerMapper;
 import nnt_data.customer_service.entity.Customer;
 import nnt_data.customer_service.domain.service.CustomerPortImpl;
 import org.springframework.http.ResponseEntity;

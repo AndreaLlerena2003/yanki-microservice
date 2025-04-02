@@ -1,4 +1,4 @@
-package nnt_data.customer_service.infraestructure.persistence.entity;
+package nnt_data.customer_service.infrastructure.persistence.entity;
 
 
 import lombok.Data;

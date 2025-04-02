@@ -1,8 +1,8 @@
-package nnt_data.customer_service.infraestructure.persistence.mapper.strategy;
+package nnt_data.customer_service.infrastructure.persistence.mapper.strategy;
 
 import nnt_data.customer_service.entity.BusinessCustomer;
 import nnt_data.customer_service.entity.Customer;
-import nnt_data.customer_service.infraestructure.persistence.entity.CustomerEntity;
+import nnt_data.customer_service.infrastructure.persistence.entity.CustomerEntity;
 import org.springframework.stereotype.Component;
 /**
  * Estrategia de mapeo para clientes de negocios, extendiendo la estrategia base.
