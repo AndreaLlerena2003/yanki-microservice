@@ -10,6 +10,8 @@ import nnt_data.customer_service.infraestructure.persistence.repository.Customer
 import nnt_data.customer_service.domain.validation.CustomerValidator;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  * Implementación del puerto de servicio para la entidad `Customer`.
  * Utiliza `Mono` de Reactor para manejar las operaciones de manera reactiva.
@@ -29,9 +31,11 @@ public class CustomerPortImpl implements CustomerPort {
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
     private final CustomerValidator customerValidator;
+    private static final Logger log = LoggerFactory.getLogger(CustomerPortImpl.class);
 
     @Override
     public Mono<Customer> createCustomer(CustomerEntity customerEntity) {
+        log.debug("Datos recibidos para crear cliente: {}", customerEntity);
         return customerMapper.toDomain(customerEntity)
                 .flatMap(customer -> customerValidator.ensureUniqueFields(Mono.just(customer))
                         .thenReturn(customerEntity)
@@ -42,6 +46,7 @@ public class CustomerPortImpl implements CustomerPort {
 
     @Override
     public Mono<Customer> updateCustomer(String id, CustomerEntity customerEntity) {
+        log.debug("Datos de actualización: {}", customerEntity);
         return customerRepository.findById(id)
                 .switchIfEmpty(Mono.error(new CustomerNotFoundException("Customer not found")))
                 .flatMap(existingCustomer -> {
@@ -53,6 +58,7 @@ public class CustomerPortImpl implements CustomerPort {
 
     @Override
     public Mono<Customer> getCustomerById(String id) {
+        log.info("Buscando cliente por ID: {}", id);
         return customerRepository.findById(id)
                 .switchIfEmpty(Mono.error(new CustomerNotFoundException("Customer not found")))
                 .flatMap(customerMapper::toDomain);
@@ -60,6 +66,7 @@ public class CustomerPortImpl implements CustomerPort {
 
     @Override
     public Mono<Void> deleteCustomerById(String id) {
+        log.info("Iniciando eliminación de cliente con ID: {}", id);
         return customerRepository.findById(id)
                 .switchIfEmpty(Mono.error(new CustomerNotFoundException("Customer not found")))
                 .flatMap(customer -> customerRepository.deleteById(id));
