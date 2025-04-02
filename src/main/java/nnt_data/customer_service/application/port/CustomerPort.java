@@ -2,6 +2,7 @@ package nnt_data.customer_service.application.port;
 
 import nnt_data.customer_service.infraestructure.persistence.entity.CustomerEntity;
 import nnt_data.customer_service.entity.Customer;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 /**
  * Interfaz CustomerPort para operaciones de clientes.
@@ -18,4 +19,5 @@ public interface CustomerPort {
     Mono<Customer> updateCustomer(String id, CustomerEntity customerEntity);
     Mono<Customer> getCustomerById(String id);
     Mono<Void> deleteCustomerById(String id);
+    Flux<Customer> findAll();
 }

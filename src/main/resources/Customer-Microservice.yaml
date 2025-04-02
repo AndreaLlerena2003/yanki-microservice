@@ -17,15 +17,6 @@ paths:
       summary: Obtener todos los clientes
       description: Recupera la lista completa de clientes registrados en el sistema
       operationId: getCustomers
-      parameters:
-        - name: type
-          in: query
-          description: Filtrar por tipo de cliente
-          schema:
-            type: string
-            enum:
-              - personal
-              - business
       responses:
         '200':
           description: Lista de clientes recuperada con éxito
@@ -35,24 +26,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Customer'
-              examples:
-                listExample:
-                  summary: Ejemplo de lista de clientes
-                  value:
-                    - id: "cust-123456"
-                      name: "Juan"
-                      email: "juan.perez@ejemplo.com"
-                      phone: "+51987654321"
-                      address: "Av. Arequipa 123, Lima"
-                      type: "personal"
-                      dni: "12345678"
-                    - id: "cust-789012"
-                      name: "Empresa"
-                      email: "contacto@empresa.com"
-                      phone: "987654321"
-                      address: "Av. La Marina 456, Lima"
-                      type: "business"
-                      ruc: "20123456789"
         '401':
           $ref: '#/components/responses/Unauthorized'
         '500':

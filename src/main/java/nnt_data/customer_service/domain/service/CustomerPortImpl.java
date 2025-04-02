@@ -9,6 +9,7 @@ import nnt_data.customer_service.entity.Customer;
 import nnt_data.customer_service.infraestructure.persistence.repository.CustomerRepository;
 import nnt_data.customer_service.domain.validation.CustomerValidator;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,5 +71,13 @@ public class CustomerPortImpl implements CustomerPort {
         return customerRepository.findById(id)
                 .switchIfEmpty(Mono.error(new CustomerNotFoundException("Customer not found")))
                 .flatMap(customer -> customerRepository.deleteById(id));
+    }
+
+    @Override
+    public Flux<Customer> findAll() {
+        return customerRepository.findAll()
+                .flatMap(customerMapper::toDomain)
+                .doOnNext(customer -> log.info("Cliente recuperado: {}", customer))
+                .doOnError(e -> log.error("Error al recuperar clientes: {}", e.getMessage()));
     }
 }
