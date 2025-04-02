@@ -1,6 +1,7 @@
 package nnt_data.customer_service.domain.validation.strategy;
 
 import nnt_data.customer_service.entity.Customer;
+import nnt_data.customer_service.entity.CustomerSubtype;
 import nnt_data.customer_service.entity.PersonalCustomer;
 import nnt_data.customer_service.infraestructure.persistence.repository.CustomerRepository;
 import org.springframework.stereotype.Component;
@@ -27,5 +28,19 @@ public class PersonalCustomerValidationStrategy extends BaseValidationStrategy i
     @Override
     public boolean supports(Customer customer) {
         return customer instanceof PersonalCustomer;
+    }
+
+    @Override
+    public Mono<Void> validateSubtype(CustomerSubtype subtype) {
+        if (subtype == null) {
+            return Mono.error(new IllegalArgumentException(
+                    "Un cliente debe especificar un subtipo"));
+        }
+        boolean isValid = CustomerSubtype.REGULAR.equals(subtype) || CustomerSubtype.VIP.equals(subtype);
+        if (!isValid) {
+            return Mono.error(new IllegalArgumentException(
+                    "Un cliente personal solo puede tener subtipos REGULAR o VIP"));
+        }
+        return Mono.empty();
     }
 }

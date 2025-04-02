@@ -10,6 +10,7 @@ public abstract  class BaseCustomerMappingStrategy implements CustomerMappingStr
         target.setEmail(source.getEmail());
         target.setPhone(source.getPhone());
         target.setAddress(source.getAddress());
+        target.setSubtype(source.getSubtype());
     }
 
     protected void mapCommonFields(CustomerEntity source, Customer target) {
@@ -18,5 +19,6 @@ public abstract  class BaseCustomerMappingStrategy implements CustomerMappingStr
         target.setEmail(source.getEmail());
         target.setPhone(source.getPhone());
         target.setAddress(source.getAddress());
+        target.setSubtype(source.getSubtype());
     }
 }

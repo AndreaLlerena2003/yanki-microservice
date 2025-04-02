@@ -22,20 +22,25 @@ public class CustomerPortImpl implements CustomerPort {
     public Mono<Customer> createCustomer(CustomerEntity customerEntity) {
         return customerMapper.toDomain(customerEntity)
                 .flatMap(customer -> customerValidator.ensureUniqueFields(Mono.just(customer))
+                        .then(customerValidator.validateSubtype(Mono.just(customer))
                         .thenReturn(customerEntity)
                 )
                 .flatMap(customerRepository::insert)
-                .flatMap(customerMapper::toDomain);
+                .flatMap(customerMapper::toDomain));
     }
 
     @Override
     public Mono<Customer> updateCustomer(String id, CustomerEntity customerEntity) {
         return customerRepository.findById(id)
-                .switchIfEmpty(Mono.error(new CustomerNotFoundException("Customer not found")))
-                .flatMap(existingCustomer -> {
-                    customerEntity.setId(id);
-                    return customerRepository.save(customerEntity);
-                })
+                .switchIfEmpty(Mono.error(new CustomerNotFoundException("Cliente no encontrado")))
+                .flatMap(existingCustomer -> customerMapper.toDomain(customerEntity)
+                        .flatMap(customer -> {
+                            customerEntity.setId(id);
+                            return customerValidator.validateSubtype(Mono.just(customer))
+                                    .thenReturn(customerEntity);
+                        })
+                )
+                .flatMap(customerRepository::save)
                 .flatMap(customerMapper::toDomain);
     }
 

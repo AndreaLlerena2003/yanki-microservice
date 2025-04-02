@@ -3,6 +3,7 @@ package nnt_data.customer_service.domain.validation;
 import lombok.AllArgsConstructor;
 import nnt_data.customer_service.entity.Customer;
 import nnt_data.customer_service.domain.validation.strategy.CustomerValidationStrategy;
+import nnt_data.customer_service.entity.CustomerSubtype;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
@@ -26,5 +27,17 @@ public class CustomerValidatorImpl implements CustomerValidator{
                         .validateUniqueFields(customer)
         );
     }
+
+    @Override
+    public Mono<Void> validateSubtype(Mono<Customer> customerMono) {
+        return  customerMono.flatMap(customer ->
+                    validationStrategies.stream()
+                            .filter(strategy -> strategy.supports(customer))
+                            .findFirst()
+                            .orElseThrow(() -> new IllegalArgumentException("No validation strategy found"))
+                            .validateSubtype(customer.getSubtype())
+                );
+    }
+
 
 }
