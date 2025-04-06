@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 @ExtendWith(MockitoExtension.class)
 class PersonalCustomerMappingStrategyTest {
 
@@ -104,9 +105,8 @@ class PersonalCustomerMappingStrategyTest {
     void toEntity_withNonPersonalCustomer_shouldThrowClassCastException() {
         Customer businessCustomer = new Customer();
         businessCustomer.setType(Customer.TypeEnum.BUSINESS);
-        assertThrows(ClassCastException.class, () -> {
-            strategy.toEntity(businessCustomer);
-        });
+        assertThrows(ClassCastException.class,
+                () -> strategy.toEntity(businessCustomer));
     }
 
     @Test
