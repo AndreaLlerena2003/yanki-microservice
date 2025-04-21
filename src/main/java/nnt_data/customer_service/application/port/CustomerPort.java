@@ -20,4 +20,5 @@ public interface CustomerPort {
     Mono<Customer> getCustomerById(String id);
     Mono<Void> deleteCustomerById(String id);
     Flux<Customer> findAll();
+    Flux<Object> getTotalReportProducts(String id);
 }

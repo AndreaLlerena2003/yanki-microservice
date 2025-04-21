@@ -82,6 +82,16 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-circuitbreaker</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.resilience4j</groupId>
+			<artifactId>resilience4j-reactor</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		<dependency>
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
@@ -195,6 +205,7 @@
 							<inputSpec>${basedir}/src/main/resources/Customer-Microservice.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 							<configOptions>
+								<dateLibrary>legacy</dateLibrary>
 								<reactive>true</reactive>
 								<interfaceOnly>true</interfaceOnly>
 								<useJakartaEe>true</useJakartaEe>

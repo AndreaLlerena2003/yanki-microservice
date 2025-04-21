@@ -9,6 +9,7 @@ import nnt_data.customer_service.entity.Customer;
 import nnt_data.customer_service.infrastructure.persistence.repository.CustomerRepository;
 import nnt_data.customer_service.domain.validation.CustomerValidator;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import org.slf4j.Logger;
@@ -84,5 +85,10 @@ public class CustomerPortImpl implements CustomerPort {
                 .flatMap(customerMapper::toDomain)
                 .doOnNext(customer -> log.info("Cliente recuperado: {}", customer))
                 .doOnError(e -> log.error("Error al recuperar clientes: {}", e.getMessage()));
+    }
+
+    @Override
+    public Flux<Object> getTotalReportProducts(String id) {
+        return null; // implementar
     }
 }
