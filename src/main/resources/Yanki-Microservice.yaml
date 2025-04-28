@@ -1,0 +1,291 @@
+openapi: 3.0.3
+info:
+  title: API Monedero Móvil Yanki
+  description: |
+    API simplificada para el monedero móvil Yanki que permite a los usuarios realizar pagos
+    utilizando su número de celular sin necesidad de ser clientes del banco.
+  version: 1.0.0
+  contact:
+    name: Banco API Support
+    email: api-support@banco.com
+servers:
+  - url: https://api.banco.com/v1
+    description: Servidor de producción
+  - url: https://api-dev.banco.com/v1
+    description: Servidor de desarrollo
+
+tags:
+  - name: usuarios
+    description: Operaciones relacionadas con usuarios del monedero Yanki
+  - name: transacciones
+    description: Operaciones relacionadas con transacciones entre monederos
+  - name: tarjetas
+    description: Operaciones relacionadas con tarjetas asociadas
+
+paths:
+  /yanki/usuarios:
+    post:
+      tags:
+        - usuarios
+      summary: Registrar nuevo usuario
+      description: Registra un nuevo usuario en el sistema de monedero móvil Yanki
+      operationId: registrarUsuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserYanki'
+      responses:
+        '201':
+          description: Usuario registrado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserYanki'
+        '400':
+          description: Datos de entrada inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: El usuario ya existe
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /yanki/monederos/transacciones:
+    post:
+      tags:
+        - transacciones
+      summary: Realizar una transferencia entre monederos
+      description: Permite enviar dinero desde un monedero a otro usando el número de teléfono
+      operationId: realizarTransferencia
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionYanki'
+      responses:
+        '201':
+          description: Transferencia realizada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionYanki'
+        '400':
+          description: Datos de entrada inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Algún monedero no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Saldo insuficiente para realizar la operación
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /yanki/tarjetas:
+    post:
+      tags:
+        - tarjetas
+      summary: Asociar tarjeta de débito
+      description: Asocia una tarjeta de débito al monedero Yanki
+      operationId: asociarTarjeta
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AsociacionTarjeta'
+      responses:
+        '201':
+          description: Tarjeta asociada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsociacionTarjeta'
+        '400':
+          description: Datos de entrada inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: La tarjeta ya está asociada a otro monedero
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    UserYanki:
+      type: object
+      required:
+        - tipoDocumento
+        - numeroDocumento
+        - telefono
+        - imei
+        - correo
+        - pin
+      properties:
+        id:
+          type: string
+          description: Identificador único del usuario
+        pin:
+          type: string
+          format: password
+          description: PIN de seguridad del monedero
+        tipoDocumento:
+          type: string
+          enum: [DNI, CEX, PASAPORTE]
+        numeroDocumento:
+          type: string
+        telefono:
+          type: string
+        imei:
+          type: string
+        correo:
+          type: string
+          format: email
+        tarjetaAsociada:
+          type: string
+          description: Id de la Tarjeta asociada
+
+    TransactionYanki:
+      type: object
+      required:
+        - telefonoOrigen
+        - telefonoDestino
+        - monto
+        - type
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+            - payment
+            - spent
+          example: "spent"
+        telefonoOrigen:
+          type: string
+          description: Número de teléfono del remitente
+        telefonoDestino:
+          type: string
+          description: Número de teléfono del destinatario
+        monto:
+          type: number
+
+    Transaction:
+      type: object
+      required:
+        - type
+        - amount
+        - sourceAccountId
+        - transactionMode
+      properties:
+        isByCreditCard:
+          type: boolean
+          example: false
+        transactionId:
+          type: string
+        date:
+          type: string
+          format: date-time
+        transactionMode:
+          type: string
+          enum:
+            - single_account
+            - inter_account
+        type:
+          type: string
+          enum:
+            - deposit
+            - withdrawal
+          example: "deposit"
+        amount:
+          type: number
+        sourceAccountId:
+          type: string
+        destinyAccountId:
+          type: string
+
+    DebitCardValidationRequest:
+      type: object
+      required:
+        - debitCardId
+      properties:
+        debitCardId:
+          type: string
+          description: ID de la tarjeta de débito
+
+    DebitCardValidationResponse:
+      type: object
+      properties:
+          isValid:
+            type: boolean
+            description: Indica si la tarjeta es válida o no
+          message:
+            type: string
+            description: Mensaje adicional sobre la validación
+
+
+    YankiTransactionRequest:
+      type: object
+      required:
+        - debitCardIdOrigin
+        - debitCardIdDestiny
+        - transaction
+      properties:
+        debitCardIdOrigin:
+          type: string
+          description: ID de la tarjeta de débito
+        debitCardIdDestiny:
+          type: string
+          description: ID de la tarjeta de débito
+        transaction:
+          $ref: '#/components/schemas/Transaction'
+
+    AsociacionTarjeta:
+      type: object
+      required:
+        - userYankiId
+        - debitCardId
+      properties:
+        userYankiId:
+          type: string
+          description: User Yanki ID
+        debitCardId:
+          type: string
+          description: Debit Card ID
+
+    Error:
+      type: object
+      properties:
+        codigo:
+          type: string
+        mensaje:
+          type: string
+        detalles:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
