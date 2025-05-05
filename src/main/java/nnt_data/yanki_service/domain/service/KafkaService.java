@@ -108,4 +108,37 @@ public class KafkaService {
             log.warn("No pending request found for correlationId: {}, response will be ignored", correlationId);
         }
     }
+
+    /**
+     * Sends a message to the specified Kafka topic with a given key.
+     * This is a fire-and-forget operation.
+     *
+     * @param topic   The Kafka topic to send the message to.
+     * @param key     The key to use for partitioning the message.
+     * @param message The message payload to send.
+     * @param <T>     The type of the message payload.
+     * @return A Mono<Void> that completes when the send operation is acknowledged (or fails).
+     */
+    public <T> Mono<Void> send(String topic, String key, T message) {
+        return Mono.fromFuture(() ->
+                        kafkaTemplate.send(topic, key, message).toCompletableFuture()
+                )
+                .doOnSuccess(result -> log.debug("Message sent to topic {} with key {}", topic, key))
+                .doOnError(error -> log.error("Error sending message to topic {} with key {}", topic, key, error))
+                .then();
+    }
+
+    /**
+     * Sends a message to the specified Kafka topic without a key (key will be null).
+     * This is a fire-and-forget operation.
+     *
+     * @param topic   The Kafka topic to send the message to.
+     * @param message The message payload to send.
+     * @param <T>     The type of the message payload.
+     * @return A Mono<Void> that completes when the send operation is acknowledged (or fails).
+     */
+    public <T> Mono<Void> send(String topic, T message) {
+        // Delegates to the send method with a null key
+        return send(topic, null, message);
+    }
 }

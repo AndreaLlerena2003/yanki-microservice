@@ -123,4 +123,8 @@ public class UserYankiService {
                             .flatMap(this::cacheUser);
                 });
     }
+
+    public Mono<Boolean> existById(String userId) {
+        return userYankiRepository.existsById(userId);
+    }
 }
